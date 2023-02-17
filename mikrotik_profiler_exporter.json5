@@ -1,0 +1,14 @@
+{
+  "settings": {
+    "profile_duration": 20,
+    "port": 49091,
+  },
+  "mikrotiks": [
+    {
+      "name": "mymictrod",
+      "host": "172.30.10.1",
+      "username": "admin",
+      "password": "admin"
+    }
+  ]
+}

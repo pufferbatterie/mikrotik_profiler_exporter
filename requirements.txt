@@ -1,0 +1,3 @@
+aiohttp==3.8.4
+aiorosapi==0.2.5
+json5
