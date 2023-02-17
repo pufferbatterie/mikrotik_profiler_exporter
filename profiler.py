@@ -39,7 +39,7 @@ class Profiler:
                 new_m = Metric(
                     name=self.METRIC_NAME,              # eq
                     labels_const=self._labels_const,    # eq
-                    labels_dyn={service: usage},        # eq keys()
+                    labels_dyn={'service': service},    # eq keys()
                     value=usage,                        # -
                     ts=now)                             # -
                 if new_m in metrics_cache:
