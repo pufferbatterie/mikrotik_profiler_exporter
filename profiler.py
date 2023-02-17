@@ -35,9 +35,13 @@ class Profiler:
             now = get_prometheus_utc_ts()
 
             for service, usage in profile_summery.items():
-                labels = {**self._labels_const, service: usage}
                 # see Metric.__eq__
-                new_m = Metric(name=self.METRIC_NAME, labels=labels, value=usage, ts=now)
+                new_m = Metric(
+                    name=self.METRIC_NAME,              # eq
+                    labels_const=self._labels_const,    # eq
+                    labels_dyn={service: usage},        # eq keys()
+                    value=usage,                        # -
+                    ts=now)                             # -
                 if new_m in metrics_cache:
                     metrics_cache.remove(new_m)
                     metrics_cache.append(new_m)

@@ -5,7 +5,8 @@ from typing import List, Dict
 @dataclasses.dataclass
 class Metric:
     name: str
-    labels: Dict[str, str] = dataclasses.field(default_factory=dict)
+    labels_const: Dict[str, str] = dataclasses.field(default_factory=dict)
+    labels_dyn: Dict[str, str] = dataclasses.field(default_factory=dict)
     value: float = None
     ts: int = None
 
@@ -14,8 +15,9 @@ class Metric:
             return False
 
         if self.name == other.name:
-            if self.labels.keys() == other.labels.keys():
-                return True
+            if self.labels_const == other.labels_const:
+                if self.labels_dyn.keys() == other.labels_dyn.keys():
+                    return True
 
         return False
 
@@ -26,7 +28,8 @@ from aiohttp import web
 
 
 def format_line(m: Metric) -> str:
-    labels_str = ','.join([f'{k}="{v}"' for k, v in m.labels.items()])
+    labels = {**m.labels_const, **m.labels_dyn}
+    labels_str = ','.join([f'{k}="{v}"' for k, v in labels.items()])
     labels_str = f"{{{labels_str}}}"
     return f"{m.name}{labels_str} {m.value} {m.ts}"
 
