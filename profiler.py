@@ -37,15 +37,15 @@ class Profiler:
             for service, usage in profile_summery.items():
                 # see Metric.__eq__
                 new_m = Metric(
-                    name=self.METRIC_NAME,              # eq
-                    labels_const=self._labels_const,    # eq
-                    labels_dyn={'service': service},    # eq keys()
-                    value=usage,                        # -
-                    ts=now)                             # -
+                    name=self.METRIC_NAME,                              # eq
+                    labels={**self._labels_const, 'service': service},  # eq
+                    value=usage,                                        # -
+                    ts=now)                                             # -
                 if new_m in metrics_cache:
                     metrics_cache.remove(new_m)
                     metrics_cache.append(new_m)
                 else:
+                    print(f'add new {new_m}')
                     metrics_cache.append(new_m)
 
     @staticmethod
