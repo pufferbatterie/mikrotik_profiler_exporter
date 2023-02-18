@@ -1,6 +1,6 @@
 {
   "settings": {
-    "profile_duration": 4,
+    "profile_duration": 20,
     "port": 49091,
   },
   "mikrotiks": [
