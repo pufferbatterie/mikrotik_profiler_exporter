@@ -7,8 +7,8 @@
     {
       "name": "mymictrod",
       "host": "172.30.10.1",
-      "username": "admin",
-      "password": "admin"
+      "username": "monitoring",
+      "password": "monitoring"
     }
   ]
 }
