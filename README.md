@@ -6,8 +6,10 @@ result in prometheus text format with timestamp.
 
 ![Grafana Dashboard for mikrotik profile data](doc/grafana_profile.png)
 
+Containerization:
 ```
-MacBook-Pro-von-Markus % docker run --rm -it -p49091:49091 mikrotik_profiler_exporter
+MacBook-Pro-von-Markus % docker build . -t mikrotik_profiler_exporter
+MacBook-Pro-von-Markus % docker run --rm -it -v"./my_conf.json5:/mikrotik_profiler_exporter.json5:ro" -p49091:49091 mikrotik_profiler_exporter
 started profiling task for mymictrod - 172.30.10.1 with dur 20
 /metrics endpoint started on port 49091
 wait forever

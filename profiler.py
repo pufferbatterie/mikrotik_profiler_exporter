@@ -45,7 +45,6 @@ class Profiler:
                     metrics_cache.remove(new_m)
                     metrics_cache.append(new_m)
                 else:
-                    print(f'add new {new_m}')
                     metrics_cache.append(new_m)
 
     @staticmethod
