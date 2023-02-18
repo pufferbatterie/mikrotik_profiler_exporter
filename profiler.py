@@ -32,21 +32,18 @@ class Profiler:
 
     async def start(self):
         while True:
-            print('profile stasrt')
             t0 = time.time()
             try:
                 await self._profile()
-            except RosApiException as rae:
-                print(f'{rae}')
+            except KeyboardInterrupt:
+                return
             except Exception as e:
-                print(f'{e}')
-            finally:
-                dur = time.time() - t0
-                sleep = self._profile_duration - dur
-                if sleep > 0:
-                    print(f'wait {sleep}')
-                    await asyncio.sleep(sleep)
-            print('profile done')
+                print(f'{e}')  # mostly RosApiException
+
+            dur = time.time() - t0
+            sleep = self._profile_duration - dur
+            if sleep > 0:
+                await asyncio.sleep(sleep)
 
     async def _profile(self):
         con = await self._con()
